@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="horizontal"
+    tools:context="com.example.hola.fragments_examples.MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_fragment"
+        android:layout_weight="1"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/extra_fragment"
+        android:layout_weight="1"
+        />
+
+</LinearLayout>
+
+<!-- añadimos una orientación android:orientation="horizontal" a un Linear Layout para que
+los fragments salgan uno al lado del otro en horizontal.
+
+ android:layout_weight="1" -> le ponemos el peso que tendria que tener sobre los otros elementos
+  del layout.
+
+layout_width="match_parent" -> hace crecer el Fragment todo lo que le permita el elemento padre
+
+ -->
