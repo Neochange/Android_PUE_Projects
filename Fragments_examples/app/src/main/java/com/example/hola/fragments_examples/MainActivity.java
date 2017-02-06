@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 
 // Implementamos la functión de OnFragment1InteractionListener para capturar el click dentro del
 // fragment
-public class MainActivity extends AppCompatActivity implements FragmentBoton1.OnFragment1InteractionListener {
+public class MainActivity extends AppCompatActivity implements FragmentBoton1.OnFragment1InteractionListener, FragmentBoton2.OnFragment2InteractionListener {
 
     FrameLayout main;
     FrameLayout extra;
@@ -55,5 +55,21 @@ public class MainActivity extends AppCompatActivity implements FragmentBoton1.On
         }
         ftrans.commit();
 
+    }
+
+    @Override
+    public void onButton2Clicked() {
+        Log.i("MainActivity", "Se ha clicado el Botón 2 en el fragment 1");
+
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ftrans = fm.beginTransaction();
+
+        if( extra == null){ // Si estamos en portrait carga el fragment del botón 3
+            ftrans.add(R.id.main_fragment, new FragmentBoton3());
+        }
+        else{ // Si estamos en landscape, cargamos el fragment del botón 3 en el extra_fragment
+            ftrans.add(R.id.extra_fragment,new FragmentBoton3());
+        }
+        ftrans.commit();
     }
 }
