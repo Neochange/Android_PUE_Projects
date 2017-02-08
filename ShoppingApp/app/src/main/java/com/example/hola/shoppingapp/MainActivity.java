@@ -15,8 +15,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.xml.sax.helpers.XMLReaderAdapter;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ListTiendasFragment.OnListItemFragmentListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,5 +112,28 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onListItemClick(long tienda_id) {
+        DetailFragment detailFrag = new DetailFragment();
+        detailFrag.setTienda_id(tienda_id);
+        if( findViewById(R.id.detail_fragment) == null){
+            // Llenamos el fragment principal con el fragment de detalle
+            // Solo veriamos un fragment en cada momento
+            FragmentManager fman = getSupportFragmentManager();
+            FragmentTransaction ftrans = fman.beginTransaction();
+            ftrans.replace(R.id.list_fragment, detailFrag).addToBackStack(null);
+            ftrans.commit();
+        }
+        else{
+            // Si tenemos el fragment de detalle lo rellenamos
+            FragmentManager fman = getSupportFragmentManager();
+            FragmentTransaction ftrans = fman.beginTransaction();
+            // Lo añadimos al Back Stack para que cuando se aprete atrás, se vuelva a la ventana
+            // anterior y no se salga de la app
+            ftrans.replace(R.id.detail_fragment, detailFrag);
+            ftrans.commit();
+        }
     }
 }

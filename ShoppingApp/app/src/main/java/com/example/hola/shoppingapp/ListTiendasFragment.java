@@ -1,12 +1,15 @@
 package com.example.hola.shoppingapp;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.ListViewAutoScrollHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
@@ -23,11 +26,19 @@ import java.util.List;
 public class ListTiendasFragment extends Fragment {
 
     ListView list;
+    private OnListItemFragmentListener mListener;
 
     public ListTiendasFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if( context instanceof OnListItemFragmentListener){
+            mListener = (OnListItemFragmentListener)context;
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,10 +55,21 @@ public class ListTiendasFragment extends Fragment {
         list.setAdapter(adapter);
         // Configuramos eventos de la ListView
 
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("ListFragment", "Clicked on the id: " + id);
+                mListener.onListItemClick(id);
+            }
+        });
 
         return v;
     }
 
+
+    public interface OnListItemFragmentListener{
+        void onListItemClick(long tienda_id);
+    }
 
     // Creamos el Adapter que nos permitirá asociar la ListView al objeto con las Tiendas
     // Hay Adapter sencillos para los casos más típicos, como el StringAdapter
@@ -102,8 +124,8 @@ public class ListTiendasFragment extends Fragment {
 
 
         // TODO: que pasa cuando cambian los datos?
-
-
     }
+
+
 
 }
