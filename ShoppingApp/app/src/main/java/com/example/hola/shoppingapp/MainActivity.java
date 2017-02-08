@@ -3,6 +3,8 @@ package com.example.hola.shoppingapp;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -40,6 +42,17 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        // Llenamos el fragment principal con el fragment de la lista
+        FragmentManager fman = getSupportFragmentManager();
+        FragmentTransaction ftrans = fman.beginTransaction();
+        // Usamos Replace en vez de add porque a cada giro de orientación vuelve a generar el
+        // layout y metia un fragment encima de otro
+        ftrans.replace(R.id.list_fragment, new ListTiendasFragment());
+        ftrans.commit();
+
+
     }
 
     @Override

@@ -43,6 +43,18 @@ public class InMemoryTiendasService implements TiendasService {
         t.setPrize(100);
         t.setWeb("http://www.");
         listaTiendas.add(t);
+
+        for(int i=0; i< 50; i++){
+            t = new Tienda();
+            t.set_id(getNextId());
+            t.setNombre("Tienda " + i);
+            t.setRating(i%5);
+            t.setService(7);
+            t.setTelefono("1236564654");
+            t.setPrize(i+30);
+            t.setWeb("http://www.");
+            listaTiendas.add(t);
+        }
     }
 
     @Override
