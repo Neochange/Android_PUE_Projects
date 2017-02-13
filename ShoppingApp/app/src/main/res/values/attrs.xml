@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ValorationBarOptions">
+        <attr name="color2" format="color"></attr>
+        <attr name="color4" format="color"></attr>
+        <attr name="color6" format="color"></attr>
+        <attr name="color8" format="color"></attr>
+        <attr name="color10" format="color"></attr>
+    </declare-styleable>
+
+</resources>

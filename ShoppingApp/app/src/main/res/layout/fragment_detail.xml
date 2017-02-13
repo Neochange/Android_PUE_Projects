@@ -6,6 +6,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <!--
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
@@ -16,7 +17,18 @@
         android:layout_toEndOf="@+id/nombre_tienda"
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="34dp" />
+        android:layout_marginTop="34dp" /> -->
+
+    <com.example.hola.shoppingapp.views.Valorationbar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/precio_tienda"
+        custom:color2="@android:color/holo_blue_bright"
+        custom:color4="@android:color/holo_blue_dark"
+        custom:color6="@android:color/holo_orange_light"
+        custom:color8="@android:color/holo_green_light"
+        custom:color10="@android:color/holo_green_dark"
+        />
 
     <TextView
         android:text="TextView"
@@ -30,6 +42,7 @@
         android:layout_marginStart="67dp"
         android:layout_marginTop="15dp" />
 
+
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
@@ -39,6 +52,8 @@
         android:layout_toStartOf="@+id/precio_tienda"
         android:layout_marginTop="47dp"
         android:id="@+id/servicio_tienda" />
+
+
 
     <RatingBar
         android:layout_width="wrap_content"
