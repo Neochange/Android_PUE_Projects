@@ -14,6 +14,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.hola.shoppingapp.model.Tienda;
+import com.example.hola.shoppingapp.views.Valorationbar;
 
 
 /**
@@ -42,8 +43,10 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         // Si la vista si está inicializada, la reaprovecho
         TextView nombre = (TextView) view.findViewById(R.id.nombre_tienda);
         nombre.setText(t.getNombre());
-        TextView precio = (TextView) view.findViewById(R.id.precio_tienda);
+
+        Valorationbar precio = (Valorationbar) view.findViewById(R.id.precio_tienda);
         precio.setText(String.valueOf(t.getPrize()));
+
         TextView servicio = (TextView) view.findViewById(R.id.servicio_tienda);
         servicio.setText(String.valueOf(t.getService()));
         RatingBar valoracion = (RatingBar) view.findViewById(R.id.ratingBar);
