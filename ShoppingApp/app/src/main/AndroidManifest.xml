@@ -4,14 +4,13 @@
 
     <!-- Como es una subclase de Aplication, android lo iniciará cuando cree la aplicación -->
     <!-- El punto significa que usa el default package -->
-
     <application
+        android:name=".TiendasApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".TiendasApplication">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -22,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".EditTienda"
+            android:label="@string/title_activity_edit_tienda"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

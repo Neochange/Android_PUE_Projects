@@ -52,7 +52,7 @@ public class InMemoryTiendasService implements TiendasService {
             t.setService(7);
             t.setTelefono("1236564654");
             t.setPrize(i+30);
-            t.setWeb("http://www.");
+            t.setWeb("http://www.google.es");
             listaTiendas.add(t);
         }
     }
