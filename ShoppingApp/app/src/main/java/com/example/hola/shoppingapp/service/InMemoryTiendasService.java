@@ -3,6 +3,7 @@ package com.example.hola.shoppingapp.service;
 import com.example.hola.shoppingapp.model.Tienda;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -59,7 +60,7 @@ public class InMemoryTiendasService implements TiendasService {
 
     @Override
     public List<Tienda> getAllTiendas() {
-        return listaTiendas;
+        return new ArrayList<>(listaTiendas);
     }
 
     @Override
@@ -72,8 +73,9 @@ public class InMemoryTiendasService implements TiendasService {
 
     @Override
     public void removeTienda(long id) {
-        for(Tienda t:listaTiendas){
-            if(t.get_id()==id) listaTiendas.remove(t);
+        for(Iterator<Tienda> iter=listaTiendas.iterator(); iter.hasNext();){
+            Tienda t = iter.next();
+            if(t.get_id()==id) iter.remove();
         }
     }
 

@@ -3,4 +3,5 @@
     <string name="app_name">ShoppingApp</string>
     <string name="action_settings">Configuració</string>
     <string name="title_activity_edit_tienda">Editar Botiga</string>
+    <string name="BorrarTienda">Esborrar Botiga</string>
 </resources>

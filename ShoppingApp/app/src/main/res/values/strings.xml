@@ -9,4 +9,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_edit_tienda">Editar Tienda</string>
+    <string name="BorrarTienda_title">Borrar Tienda</string>
+    <string name="BorrarTienda_message">Quiere borrar la tienda?</string>
+    <string name="BorrarTienda_yes">Sí</string>
+    <string name="BorrarTienda_no">No</string>
+
+    <string name="list_fragment_delete_ok_message">La Tienda se ha borrado correctamente</string>
+
+
 </resources>

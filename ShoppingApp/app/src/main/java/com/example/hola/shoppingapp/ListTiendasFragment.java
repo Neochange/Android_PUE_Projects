@@ -2,9 +2,11 @@ package com.example.hola.shoppingapp;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.ListViewAutoScrollHelper;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hola.shoppingapp.model.Tienda;
 
@@ -50,7 +53,7 @@ public class ListTiendasFragment extends Fragment {
 
 
         // Creamos el adapter
-        TiendasListAdapter adapter = new TiendasListAdapter();
+        final TiendasListAdapter adapter = new TiendasListAdapter();
         // Asociamos el Adapter a la ListView
         list.setAdapter(adapter);
         // Configuramos eventos de la ListView
@@ -60,6 +63,45 @@ public class ListTiendasFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("ListFragment", "Clicked on the id: " + id);
                 mListener.onListItemClick(id);
+            }
+        });
+
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            // Hemos añadido final al long de id para decir a los callback Onclick
+            // que ese valor no va a cambiar
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, final long id) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
+                alertBuilder.setTitle(R.string.BorrarTienda_title);
+                alertBuilder.setMessage(R.string.BorrarTienda_message);
+                alertBuilder.setNegativeButton(R.string.BorrarTienda_no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                alertBuilder.setPositiveButton(R.string.BorrarTienda_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Borramos la tienda con id
+                        TiendasApplication.getInstance().getTiendasService().removeTienda(id);
+                        // Avisamos al adapter que los datos han cambiado
+                        // Esta función la hemos sobrescrito en nuestro adapter
+                        adapter.notifyDataSetChanged();
+                        Toast myToast = Toast.makeText(getActivity(),
+                                                        R.string.list_fragment_delete_ok_message,
+                                                        Toast.LENGTH_LONG);
+                        myToast.show();
+                        // dialog.cancel();
+
+                    }
+                });
+
+                alertBuilder.show();
+                return true; // Indicamos con este boolean que hemos usado el evento para el
+                            // propósito que lo necesitabamos, si por ejemplo el Item tiene
+                            // cosas dentro, con false el evento se propagaria hacia abajo
             }
         });
 
@@ -121,9 +163,15 @@ public class ListTiendasFragment extends Fragment {
             return convertView;
         }
 
+        // Sobreescribimos esta función para cuando los datos hayan cambiado
+        @Override
+        public void notifyDataSetChanged(){
+            tiendas = TiendasApplication.getInstance().getTiendasService().getAllTiendas();
+            super.notifyDataSetChanged();
+        }
 
 
-        // TODO: que pasa cuando cambian los datos?
+
     }
 
 
