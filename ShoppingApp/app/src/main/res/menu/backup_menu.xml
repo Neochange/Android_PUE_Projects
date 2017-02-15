@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/backup_menu_sd"
+        android:title="@string/backup_menu_sd"
+        android:checkable="true"
+        />
+
+    <item android:id="@+id/backup_menu_cloud"
+        android:title="@string/backup_menu_cloud"
+        android:checkable="true"
+        />
+
+</menu>

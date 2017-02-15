@@ -5,6 +5,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -93,6 +95,44 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        else if(id == R.id.backup_menu_button){
+            // Si se selecciona el menu de backUp, abrimos un menu conceptual para seleccionar
+            // el tipo de backup y gestionamos el evento de click en ese submenu
+            PopupMenu menu = new PopupMenu(this,findViewById(R.id.toolbar));
+            menu.getMenuInflater().inflate(R.menu.backup_menu,menu.getMenu());
+            menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    boolean result = false;
+                    switch (item.getItemId()){
+                        case R.id.backup_menu_cloud:
+                            Log.i("onOptionsItemSelected", "Cloud backup selected");
+                            if(item.isChecked()){
+                                item.setChecked(false);
+                            }
+                            else{
+                                item.setChecked(true);
+                            }
+                            // TODO guardar la preferencia de usuario
+                            result = true;
+                            break;
+                        case R.id.backup_menu_sd:
+                            Log.i("onOptionsItemSelected", "SD backup selected");
+                            if(item.isChecked()){
+                                item.setChecked(false);
+                            }
+                            else{
+                                item.setChecked(true);
+                            }
+                            // TODO guardar la preferencia de usuario
+                            result = true;
+                            break;
+                    }
+                    return result; // Devolvemos true si hemos gestionado el menu correctamente
+                }
+            });
+            menu.show();
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -131,6 +171,8 @@ public class MainActivity extends AppCompatActivity
             // Solo veriamos un fragment en cada momento
             FragmentManager fman = getSupportFragmentManager();
             FragmentTransaction ftrans = fman.beginTransaction();
+            // Lo añadimos al BackStack para que cuando se aprete atrás, se vuelva a la ventana
+            // anterior y no se salga de la app
             ftrans.replace(R.id.list_fragment, detailFrag).addToBackStack(null);
             ftrans.commit();
         }
@@ -138,8 +180,7 @@ public class MainActivity extends AppCompatActivity
             // Si tenemos el fragment de detalle lo rellenamos
             FragmentManager fman = getSupportFragmentManager();
             FragmentTransaction ftrans = fman.beginTransaction();
-            // Lo añadimos al Back Stack para que cuando se aprete atrás, se vuelva a la ventana
-            // anterior y no se salga de la app
+
             ftrans.replace(R.id.detail_fragment, detailFrag);
             ftrans.commit();
         }
