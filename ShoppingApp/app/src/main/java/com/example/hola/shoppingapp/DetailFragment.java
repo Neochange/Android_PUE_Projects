@@ -1,6 +1,7 @@
 package com.example.hola.shoppingapp;
 
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -24,6 +27,8 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
 
     long tienda_id;
     Tienda t; // la tienda actual en cada momento
+    Valorationbar precio;
+    Valorationbar servicio;
 
     public DetailFragment() {
     }
@@ -31,6 +36,31 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
 
     public void setTienda_id(long tienda_id){
         this.tienda_id = tienda_id;
+    }
+
+    // Ejecutamos una animación sobre las valorationBar precio/servicio
+    @Override
+    public void onResume() {
+        super.onResume();
+        // El animador buscará el segundo parametro en la clase como "setValoracion"
+        // La animación irá desde el tercer parametro hasta el cuarto
+        // Se podría crear también un animación en un resource y hacer LoadAnimation
+        ObjectAnimator animatorPrice = ObjectAnimator.ofFloat(precio,
+                                                              "valoracion",
+                                                              0.0f,
+                                                              (float) t.getPrize());
+
+        animatorPrice.setDuration(1000);
+        ObjectAnimator animatorService = ObjectAnimator.ofFloat(servicio,
+                "valoracion",
+                0.0f,
+                (float) t.getService());
+
+        animatorService.setDuration(1000);
+        animatorPrice.setInterpolator(new AccelerateDecelerateInterpolator());
+        animatorService.setInterpolator(new AccelerateInterpolator());
+        animatorPrice.start();
+        animatorService.start();
     }
 
     @Override
@@ -44,11 +74,13 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         TextView nombre = (TextView) view.findViewById(R.id.nombre_tienda);
         nombre.setText(t.getNombre());
 
-        Valorationbar precio = (Valorationbar) view.findViewById(R.id.precio_tienda);
-        precio.setText(String.valueOf(t.getPrize()));
+        // Cambiamos precio y servicio para que pasen a ser nuestra barra custom (ValorationBar)
+        precio = (Valorationbar) view.findViewById(R.id.precio_tienda);
+        precio.setValoracion(t.getPrize());
 
-        TextView servicio = (TextView) view.findViewById(R.id.servicio_tienda);
-        servicio.setText(String.valueOf(t.getService()));
+        servicio = (Valorationbar) view.findViewById(R.id.servicio_tienda);
+        servicio.setValoracion(t.getService());
+
         RatingBar valoracion = (RatingBar) view.findViewById(R.id.ratingBar);
         valoracion.setRating(t.getRating());
 

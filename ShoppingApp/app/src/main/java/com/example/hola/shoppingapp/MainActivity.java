@@ -14,11 +14,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import org.xml.sax.helpers.XMLReaderAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ListTiendasFragment.OnListItemFragmentListener{
+
+    // Guardamos una variable con la animación cargada para usarla cada vez
+    Animation remarkButtonAnimation;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +33,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        // Cargamos el objeto Animation para que se hagan las modificaciones al hacer click
+        remarkButtonAnimation = AnimationUtils.loadAnimation(this, R.anim.beat);
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                remarkButton();
             }
         });
 
@@ -136,4 +144,9 @@ public class MainActivity extends AppCompatActivity
             ftrans.commit();
         }
     }
+
+    private void remarkButton(){
+        fab.startAnimation(remarkButtonAnimation);
+    }
+
 }

@@ -17,7 +17,7 @@ import com.example.hola.shoppingapp.R;
 // Extendemos TextView para crear una vista aprovechando un TextView
 public class Valorationbar extends TextView {
 
-    private int valoracion; // Guardamos la valoración de la tienda
+    private float valoracion; // Guardamos la valoración de la tienda
     private int color2; // Guardamos los colores que serán parametros(propiedades) de nuestro TextView
     private int color4;
     private int color6;
@@ -27,11 +27,11 @@ public class Valorationbar extends TextView {
     Paint paintText;
     Paint paintRect;
 
-    public int getValoracion() {
+    public float getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(int valoracion) {
+    public void setValoracion(float valoracion) {
         this.valoracion = valoracion;
 
         // Le pedimos al view que repinte nuestro Canvas

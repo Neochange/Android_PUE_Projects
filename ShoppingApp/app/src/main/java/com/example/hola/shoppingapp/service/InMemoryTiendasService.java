@@ -20,7 +20,7 @@ public class InMemoryTiendasService implements TiendasService {
         t.setRating(5);
         t.setService(7);
         t.setTelefono("34534535");
-        t.setPrize(50);
+        t.setPrize(3);
         t.setWeb("http://www.");
         listaTiendas.add(t);
 
@@ -30,7 +30,7 @@ public class InMemoryTiendasService implements TiendasService {
         t.setRating(3);
         t.setService(5);
         t.setTelefono("123123");
-        t.setPrize(150);
+        t.setPrize(5);
         t.setWeb("http://www.");
         listaTiendas.add(t);
 
@@ -40,7 +40,7 @@ public class InMemoryTiendasService implements TiendasService {
         t.setRating(1);
         t.setService(7);
         t.setTelefono("1236564654");
-        t.setPrize(100);
+        t.setPrize(10);
         t.setWeb("http://www.");
         listaTiendas.add(t);
 
@@ -49,9 +49,9 @@ public class InMemoryTiendasService implements TiendasService {
             t.set_id(getNextId());
             t.setNombre("Tienda " + i);
             t.setRating(i%5);
-            t.setService(7);
+            t.setService(7%10);
             t.setTelefono("1236564654");
-            t.setPrize(i+30);
+            t.setPrize((i+30)%10);
             t.setWeb("http://www.google.es");
             listaTiendas.add(t);
         }

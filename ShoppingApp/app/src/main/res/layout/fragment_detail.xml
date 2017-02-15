@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.hola.shoppingapp.DetailFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -19,69 +20,13 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="34dp" /> -->
 
-    <com.example.hola.shoppingapp.views.Valorationbar
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/precio_tienda"
-        custom:color2="@android:color/holo_blue_bright"
-        custom:color4="@android:color/holo_blue_dark"
-        custom:color6="@android:color/holo_orange_light"
-        custom:color8="@android:color/holo_green_light"
-        custom:color10="@android:color/holo_green_dark"
-        />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/nombre_tienda"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="67dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="15dp" />
-
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/precio_tienda"
-        android:layout_toLeftOf="@+id/precio_tienda"
-        android:layout_toStartOf="@+id/precio_tienda"
-        android:layout_marginTop="47dp"
-        android:id="@+id/servicio_tienda" />
-
-
-
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/servicio_tienda"
-        android:layout_alignStart="@+id/servicio_tienda"
-        android:id="@+id/ratingBar" />
-
-    <Button
-        android:text="Web"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/web_button"
-        android:layout_alignBaseline="@+id/call_button"
-        android:layout_alignBottom="@+id/call_button"
-        android:layout_alignRight="@+id/ratingBar"
-        android:layout_alignEnd="@+id/ratingBar" />
-
-    <Button
-        android:text="Call"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:id="@+id/call_button"
-        android:layout_below="@+id/ratingBar"
-        android:layout_alignLeft="@+id/ratingBar"
-        android:layout_alignStart="@+id/ratingBar" />
+        android:id="@+id/ratingBar"
+        android:layout_marginBottom="161dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Editar"
@@ -91,4 +36,75 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/call_button"
+        android:layout_alignBaseline="@+id/web_button"
+        android:layout_alignBottom="@+id/web_button"
+        android:layout_alignRight="@+id/ratingBar"
+        android:layout_alignEnd="@+id/ratingBar" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nombre_tienda"
+        android:layout_marginTop="14dp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/call_button"
+        android:layout_toStartOf="@+id/call_button" />
+
+    <!--
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:id="@+id/servicio_tienda"
+        android:layout_below="@+id/precio_tienda"
+        android:layout_alignLeft="@+id/nombre_tienda"
+        android:layout_alignStart="@+id/nombre_tienda" />
+    -->
+
+    <Button
+        android:text="Web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/web_button"
+        android:layout_marginBottom="42dp"
+        android:layout_above="@+id/edit_button"
+        android:layout_toRightOf="@+id/edit_button"
+        android:layout_toEndOf="@+id/edit_button" />
+
+    <com.example.hola.shoppingapp.views.Valorationbar
+        android:id="@+id/servicio_tienda"
+        custom:color2="@android:color/holo_blue_bright"
+        custom:color4="@android:color/holo_blue_dark"
+        custom:color6="@android:color/holo_orange_light"
+        custom:color8="@android:color/holo_green_light"
+        custom:color10="@android:color/holo_green_dark"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nombre_tienda"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp" />
+
+    <com.example.hola.shoppingapp.views.Valorationbar
+        android:id="@+id/precio_tienda"
+        custom:color2="@android:color/holo_blue_bright"
+        custom:color4="@android:color/holo_blue_dark"
+        custom:color6="@android:color/holo_orange_light"
+        custom:color8="@android:color/holo_green_light"
+        custom:color10="@android:color/holo_green_dark"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/servicio_tienda"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
