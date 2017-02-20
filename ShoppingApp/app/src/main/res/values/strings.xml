@@ -20,5 +20,9 @@
 
     <string name="backup_menu_cloud">Cloud</string>
     <string name="backup_menu_sd">SD</string>
+    <string name="weekly_freq">weekly</string>
+    <string name="daily_freq">Daily</string>
+    <string name="cloud_backup_opt">Cloud</string>
+    <string name="sd_backuo_option">SD</string>
 
 </resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_menu_frecuencia"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.hola.shoppingapp.MenuFrecuencia">
+
+    <CheckBox
+        android:text="@string/sd_backuo_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sd_checkbox"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="toggleSD"
+        />
+
+    <CheckBox
+        android:text="@string/cloud_backup_opt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sd_checkbox"
+        android:layout_alignLeft="@+id/sd_checkbox"
+        android:layout_alignStart="@+id/sd_checkbox"
+        android:layout_marginTop="26dp"
+        android:id="@+id/cloud_checkBox" />
+
+    <RadioButton
+        android:text="@string/daily_freq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cloud_checkBox"
+        android:layout_alignLeft="@+id/cloud_checkBox"
+        android:layout_alignStart="@+id/cloud_checkBox"
+        android:layout_marginTop="108dp"
+        android:id="@+id/daily_radioButton" />
+
+    <RadioButton
+        android:text="@string/weekly_freq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:id="@+id/Weekly_radioButton2"
+        android:layout_below="@+id/daily_radioButton"
+        android:layout_alignLeft="@+id/daily_radioButton"
+        android:layout_alignStart="@+id/daily_radioButton" />
+</RelativeLayout>

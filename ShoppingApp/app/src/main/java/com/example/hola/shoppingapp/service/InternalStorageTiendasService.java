@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.hola.shoppingapp.model.Tienda;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -14,6 +16,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +35,25 @@ public class InternalStorageTiendasService implements TiendasService {
         this.context = context;
         // Cargamos todas las tiendas desde un fichero
         loadAllTiendas();
+
+        // Si es la primera vez y no tenemos aún fichero, inicializamos la variable tiendas
+        // La siguiente vez el fichero existirá y ya no será necesario este paso
+        if(tiendas == null){ tiendas = new LinkedHashMap<>(); }
+
+        if( tiendas.isEmpty()){
+            Tienda t = null;
+            for(int i=0; i< 50; i++){
+                t = new Tienda();
+                t.set_id(getNextId());
+                t.setNombre("Tienda " + i);
+                t.setRating(i%5);
+                t.setService(7%10);
+                t.setTelefono("1236564654");
+                t.setPrize((i+30)%10);
+                t.setWeb("http://www.google.es");
+                saveTienda(t);
+            }
+        }
     }
 
     /**
@@ -42,8 +64,12 @@ public class InternalStorageTiendasService implements TiendasService {
         OutputStream os = null;
         OutputStreamWriter osw = null;
         String toWrite = "";
+        Gson gson = new Gson();
 
         try{
+            // Convertimos de tiendas a json
+            toWrite = gson.toJson(tiendas);
+
             // Necesitabamos el context para poder usar openFileOutput, así que lo pedimos en el
             // constructor
             os = context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE);
@@ -86,8 +112,9 @@ public class InternalStorageTiendasService implements TiendasService {
                 sb.append(temp);
             }
 
-            // TODO Convertir de sb al Map
-
+            // Convertir de sb(String Buffer) al Map
+            Gson gson = new Gson();
+            tiendas = gson.fromJson(sb.toString(), new TypeToken<Map<Long, Tienda>>(){}.getType());
 
 
         } catch (FileNotFoundException e) {

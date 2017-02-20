@@ -24,7 +24,8 @@
         <activity
             android:name=".EditTienda"
             android:label="@string/title_activity_edit_tienda"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MenuFrecuencia"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.hola.shoppingapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -98,6 +99,7 @@ public class MainActivity extends AppCompatActivity
         else if(id == R.id.backup_menu_button){
             // Si se selecciona el menu de backUp, abrimos un menu conceptual para seleccionar
             // el tipo de backup y gestionamos el evento de click en ese submenu
+            /*
             PopupMenu menu = new PopupMenu(this,findViewById(R.id.toolbar));
             menu.getMenuInflater().inflate(R.menu.backup_menu,menu.getMenu());
             menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -132,6 +134,11 @@ public class MainActivity extends AppCompatActivity
                 }
             });
             menu.show();
+             */
+
+            Intent i = new Intent(this, MenuFrecuencia.class);
+            startActivity(i);
+
         }
 
         return super.onOptionsItemSelected(item);
