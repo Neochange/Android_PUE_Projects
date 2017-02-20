@@ -10,9 +10,12 @@ public class PreferencesManager {
 
     public final static String PREFERENCES_FILE_NAME = "shopApp_preferences";
     public final static boolean PREF_DEFAULT_VALUE = false;
+    public final static int PREF_FREQ_DEFAULT_VALUE = 1;
 
     public final static String PREF_SD = "pref_SD";
     public final static String PREF_CLOUD = "pref_CLOUD";
+    public final static String PREF_FREQ = "pref_DAILY_FREQ";
+
 
     Context context;
 
@@ -44,6 +47,19 @@ public class PreferencesManager {
         SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_FILE_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(PREF_CLOUD, enabled);
+        editor.commit();
+    }
+
+    public int getFrequency(){
+        return context.getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE).
+                getInt(PREF_FREQ, PREF_FREQ_DEFAULT_VALUE);
+    }
+
+    public void setFreq(int freq){
+        // Grabamos las prefecias de la frecuencia del backUp que viene de un radioButton
+        SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_FILE_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt(PREF_FREQ, freq);
         editor.commit();
     }
 

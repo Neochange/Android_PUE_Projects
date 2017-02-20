@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="31dp"
-        android:id="@+id/Weekly_radioButton2"
+        android:id="@+id/weekly_radioButton"
         android:layout_below="@+id/daily_radioButton"
         android:layout_alignLeft="@+id/daily_radioButton"
         android:layout_alignStart="@+id/daily_radioButton" />
