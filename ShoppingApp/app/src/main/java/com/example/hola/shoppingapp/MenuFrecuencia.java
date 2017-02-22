@@ -97,7 +97,7 @@ public class MenuFrecuencia extends AppCompatActivity {
     }
 
     public void DoBackup(View view) {
-        final BackupService service = TiendasApplication.getInstance().getbBackupService();
+        final BackupService service = TiendasApplication.getInstance().getBackupService();
         if( service.isBackupReady()){
             Log.i("BackupActivity", "Backup Ready");
             // Hay que poner final porque eñ thread no permite objeto mutables (modificables)

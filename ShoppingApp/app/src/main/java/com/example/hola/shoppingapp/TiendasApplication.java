@@ -1,11 +1,13 @@
 package com.example.hola.shoppingapp;
 
 import android.app.Application;
+import android.content.Intent;
 
 import com.example.hola.shoppingapp.preferences.PreferencesManager;
 import com.example.hola.shoppingapp.service.InMemoryTiendasService;
 import com.example.hola.shoppingapp.service.InternalStorageTiendasService;
 import com.example.hola.shoppingapp.service.TiendasService;
+import com.example.hola.shoppingapp.service.backup.BackupIntentService;
 import com.example.hola.shoppingapp.service.backup.BackupService;
 import com.example.hola.shoppingapp.service.backup.CloudBackupService;
 
@@ -30,6 +32,13 @@ public class TiendasApplication extends Application {
         preferencesManager = new PreferencesManager(this);
 
         backupservice = new CloudBackupService();
+
+        // TODO leer el último backup y decidir si hay que hacerlo de nuevo
+        boolean autobackup = true;
+        if( autobackup ){
+            Intent i = new Intent(this, BackupIntentService.class);
+            startService(i);
+        }
     }
 
     public static TiendasApplication getInstance(){
@@ -44,5 +53,5 @@ public class TiendasApplication extends Application {
         return preferencesManager;
     }
 
-    public BackupService getbBackupService(){ return backupservice;}
+    public BackupService getBackupService(){ return backupservice;}
 }

@@ -25,7 +25,11 @@
             android:name=".EditTienda"
             android:label="@string/title_activity_edit_tienda"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MenuFrecuencia"></activity>
+        <activity android:name=".MenuFrecuencia" />
+
+        <service
+            android:name=".service.backup.BackupIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
