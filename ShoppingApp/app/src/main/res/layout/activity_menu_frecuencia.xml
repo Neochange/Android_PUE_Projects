@@ -49,4 +49,12 @@
         android:layout_below="@+id/daily_radioButton"
         android:layout_alignLeft="@+id/daily_radioButton"
         android:layout_alignStart="@+id/daily_radioButton" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/backup_now"
+        android:id="@+id/do_backup_button"
+        android:onClick="DoBackup"/>
 </RelativeLayout>

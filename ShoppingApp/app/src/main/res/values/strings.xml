@@ -24,5 +24,6 @@
     <string name="daily_freq">Daily</string>
     <string name="cloud_backup_opt">Cloud</string>
     <string name="sd_backuo_option">SD</string>
+    <string name="backup_now">Do backup</string>
 
 </resources>
