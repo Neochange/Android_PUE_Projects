@@ -31,7 +31,7 @@ public class TiendasApplication extends Application {
         tiendasService = new InternalStorageTiendasService(this);
         preferencesManager = new PreferencesManager(this);
 
-        backupservice = new CloudBackupService();
+        backupservice = new CloudBackupService(this);
 
         // TODO leer el último backup y decidir si hay que hacerlo de nuevo
         boolean autobackup = true;

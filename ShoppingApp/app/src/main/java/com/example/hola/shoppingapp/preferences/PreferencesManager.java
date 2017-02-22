@@ -16,6 +16,8 @@ public class PreferencesManager {
     public final static String PREF_CLOUD = "pref_CLOUD";
     public final static String PREF_FREQ = "pref_DAILY_FREQ";
 
+    public final static String PREF_BACKUP_URL = "pref_BACKUP_URL";
+
 
     Context context;
 
@@ -60,6 +62,20 @@ public class PreferencesManager {
         SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_FILE_NAME,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt(PREF_FREQ, freq);
+        editor.commit();
+    }
+
+    public String getCloudbackupUrl(){
+        // Recuperamos la url del backup
+        return context.getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE).
+                getString(PREF_BACKUP_URL, "");
+    }
+
+    public void setCloudbackupUrl(String url){
+        // Grabamos la url donde se ha guardado el backup
+        SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_FILE_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(PREF_BACKUP_URL, url);
         editor.commit();
     }
 
