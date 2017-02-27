@@ -156,7 +156,7 @@ public class CloudBackupService implements BackupService {
                     Gson gson = new Gson();
                     // TODO borrar las tiendas actuales y cargar las que hemos recibido del server
                     List<Tienda> tiendas = gson.fromJson(sb.toString(),new TypeToken<List<Tienda>>(){}.getType());
-                    
+
 
                     break;
             }

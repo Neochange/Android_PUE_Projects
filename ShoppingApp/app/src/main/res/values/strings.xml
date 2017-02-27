@@ -25,5 +25,6 @@
     <string name="cloud_backup_opt">Cloud</string>
     <string name="sd_backuo_option">SD</string>
     <string name="backup_now">Do backup</string>
+    <string name="BorrarTienda">Borrar tienda</string>
 
 </resources>

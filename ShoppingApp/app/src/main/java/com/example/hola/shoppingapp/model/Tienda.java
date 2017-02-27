@@ -14,6 +14,20 @@ public class Tienda {
     private String web;
     private String telefono;
 
+    public Tienda(long _id, String nombre, int rating, int service, int prize, String web, String telefono) {
+        this._id = _id;
+        this.nombre = nombre;
+        this.rating = rating;
+        this.service = service;
+        this.prize = prize;
+        this.web = web;
+        this.telefono = telefono;
+    }
+
+    public Tienda() {
+
+    }
+
     public long get_id() {
         return _id;
     }

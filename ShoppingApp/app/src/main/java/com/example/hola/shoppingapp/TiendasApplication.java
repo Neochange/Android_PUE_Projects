@@ -10,6 +10,7 @@ import com.example.hola.shoppingapp.service.TiendasService;
 import com.example.hola.shoppingapp.service.backup.BackupIntentService;
 import com.example.hola.shoppingapp.service.backup.BackupService;
 import com.example.hola.shoppingapp.service.backup.CloudBackupService;
+import com.example.hola.shoppingapp.service.sqlite.SQLiteTiendasService;
 
 /**
  * Created by daa on 06/02/2017.
@@ -28,7 +29,8 @@ public class TiendasApplication extends Application {
         mInstance = this;
         // tiendasService = new InMemoryTiendasService();
         // Dejamos de usar el InMemoryTiendasService para usar el InternalStorage en un fichero
-        tiendasService = new InternalStorageTiendasService(this);
+        // Dejamos de usar el InternalStorageTiendasService para usar SQLite
+        tiendasService = new SQLiteTiendasService(this);
         preferencesManager = new PreferencesManager(this);
 
         backupservice = new CloudBackupService(this);
