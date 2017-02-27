@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hola.shoppingapp">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- Como es una subclase de Aplication, android lo iniciará cuando cree la aplicación -->
     <!-- El punto significa que usa el default package -->
@@ -32,7 +32,13 @@
 
         <service
             android:name=".service.backup.BackupIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <provider
+            android:name=".TiendasContentProvider"
+            android:authorities="com.example.hola.shoppingapp"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>
