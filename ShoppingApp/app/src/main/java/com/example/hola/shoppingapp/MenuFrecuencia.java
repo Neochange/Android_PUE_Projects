@@ -100,7 +100,7 @@ public class MenuFrecuencia extends AppCompatActivity {
         final BackupService service = TiendasApplication.getInstance().getBackupService();
         if( service.isBackupReady()){
             Log.i("BackupActivity", "Backup Ready");
-            // Hay que poner final porque eñ thread no permite objeto mutables (modificables)
+            // Hay que poner final porque el thread no permite objeto mutables (modificables)
             final ProgressDialog pd = new ProgressDialog(this);
             pd.setTitle("BackupProgress");
             pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
