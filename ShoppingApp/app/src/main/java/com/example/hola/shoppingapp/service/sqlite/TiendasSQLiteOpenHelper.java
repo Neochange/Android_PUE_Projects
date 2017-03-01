@@ -55,8 +55,8 @@ public class TiendasSQLiteOpenHelper extends SQLiteOpenHelper {
         // Actualizamos la base de datos para crear dos nuevos campos
         // Cambiamos la version en la constante DB_VERSION
         if( oldVersion <=1){
-            db.execSQL("ALTER TABLE" + TIENDAS_TABLE_NAME+ " ADD "+ COLUMN_LATITUDE+" real");
-            db.execSQL("ALTER TABLE" + TIENDAS_TABLE_NAME+ " ADD "+ COLUMN_LONGITUDE+" real");
+            db.execSQL("ALTER TABLE " + TIENDAS_TABLE_NAME+ " ADD "+ COLUMN_LATITUDE+" real");
+            db.execSQL("ALTER TABLE " + TIENDAS_TABLE_NAME+ " ADD "+ COLUMN_LONGITUDE+" real");
         }
 
     }

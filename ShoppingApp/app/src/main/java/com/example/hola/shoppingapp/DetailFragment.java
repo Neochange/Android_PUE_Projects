@@ -2,10 +2,14 @@ package com.example.hola.shoppingapp;
 
 
 import android.animation.ObjectAnimator;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,8 @@ import android.widget.TextView;
 import com.example.hola.shoppingapp.model.Tienda;
 import com.example.hola.shoppingapp.views.Valorationbar;
 
+import org.w3c.dom.Text;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +35,9 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
     Tienda t; // la tienda actual en cada momento
     Valorationbar precio;
     Valorationbar servicio;
+
+    BroadcastReceiver receiver;
+    TextView location_textview;
 
     public DetailFragment() {
     }
@@ -63,6 +72,30 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         animatorService.start();
     }
 
+
+    @Override
+    public void onStart() {
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                location_textview.setText("You are near this shop");
+            }
+        };
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
+                                    receiver,
+                                    new IntentFilter(LocationUpdateService.SHOP_NEAR_BROADCAST));
+
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(receiver);
+        super.onStop();
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -73,6 +106,8 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         // Si la vista si está inicializada, la reaprovecho
         TextView nombre = (TextView) view.findViewById(R.id.nombre_tienda);
         nombre.setText(t.getNombre());
+
+        location_textview = (TextView) view.findViewById(R.id.location_button);
 
         // Cambiamos precio y servicio para que pasen a ser nuestra barra custom (ValorationBar)
         precio = (Valorationbar) view.findViewById(R.id.precio_tienda);
@@ -136,6 +171,10 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
                 Intent editar = new Intent(getActivity(), EditTienda.class);
                 editar.putExtra(EditTienda.TIENDA_ID_EXTRA_KEY, tienda_id);
                 startActivity(editar);
+                break;
+
+            case R.id.location_button:
+                // TODO
                 break;
         }
 

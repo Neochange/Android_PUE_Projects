@@ -13,16 +13,22 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.hola.shoppingapp.model.Tienda;
 import com.example.hola.shoppingapp.service.backup.BackupIntentService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LocationUpdateService extends Service {
 
     Location lastLocation;
     DecomprasLocationListener listener;
     public static final int NOTIFICATION_ID = 1100011;
+    public static final String SHOP_NEAR_BROADCAST = "shopping.radius";
 
     public LocationUpdateService() {
         listener = new DecomprasLocationListener();
@@ -56,6 +62,8 @@ public class LocationUpdateService extends Service {
 
     // A partir de la versión 6 hay que programar la callback
     private void startLocationUpdates() {
+
+        Log.i("LocationService", "Starting location updates");
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         /*
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -70,7 +78,9 @@ public class LocationUpdateService extends Service {
         }*/
 
         try {
+            lastLocation = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 20, listener);
+            manager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 3000, 20, listener);
 
             NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
             mBuilder.setSmallIcon(android.R.drawable.ic_menu_compass);
@@ -87,6 +97,7 @@ public class LocationUpdateService extends Service {
     }
 
     private void stopLocationUpdates(){
+        Log.i("LocationService", "Stopping location updates");
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         try {
             manager.removeUpdates(listener);
@@ -99,6 +110,34 @@ public class LocationUpdateService extends Service {
         }
     }
 
+    private void checkShopsNear(){
+        Log.i("checkShopsNear", "Check if there are shops near of me");
+        List<Tienda> tiendas = TiendasApplication.getInstance().getTiendasService().getAllTiendas();
+        List<Long> tiendasNearIds = new ArrayList<>();
+        for( Tienda t:tiendas){
+            Location tiendaLoc = new Location("");
+            tiendaLoc.setLatitude(t.getLatitude());
+            tiendaLoc.setLongitude(t.getLongitude());
+            if( lastLocation.distanceTo(tiendaLoc) < 2000){
+                Log.i("checkShopsNear", "You are close to " + t.getNombre());
+                tiendasNearIds.add(t.get_id());
+            }
+        }
+
+        if( !tiendasNearIds.isEmpty()){
+            Log.i("checkShopsNear", "There are" + tiendasNearIds.size() + " shops around");
+            Intent i = new Intent(SHOP_NEAR_BROADCAST);
+            long[] lista = new long[tiendasNearIds.size()];
+            int j=0;
+            for(long id:tiendasNearIds){
+                lista[j] = id;
+                j++;
+            }
+            i.putExtra("Shops_near_extra",lista);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(i);
+        }
+    }
+
     // Creamos una clase para gestionar los cambios de GPS
     // Este listener se lo pasamos al LocationManager para que se ejecute con los eventos de localización
     private class DecomprasLocationListener implements LocationListener{
@@ -106,7 +145,7 @@ public class LocationUpdateService extends Service {
         @Override
         public void onLocationChanged(Location location) {
 
-            Log.i("LocationService", "Received location: " + location.getLatitude()+ + location.getLongitude());
+            Log.i("LocationService", "Received location: " + location.getLatitude()+ " "+ location.getLongitude());
             // Gestionamos el dato de GPS pero tenemos que hacer una gestión para eliminar muestras
             // Con mucho error o antiguas
             if( lastLocation == null){
@@ -123,6 +162,7 @@ public class LocationUpdateService extends Service {
                     lastLocation= location;
                 }
             }
+            checkShopsNear();
 
         }
 
