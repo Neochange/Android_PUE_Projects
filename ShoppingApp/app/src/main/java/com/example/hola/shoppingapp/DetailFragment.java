@@ -78,7 +78,13 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                location_textview.setText("You are near this shop");
+                long tiendas_ids[] = intent.getExtras().getLongArray("Shops_near_extra");
+                for(long id:tiendas_ids){
+                    if( id == tienda_id) {
+                        location_textview.setText("You are near this shop");
+                        break;
+                    }
+                }
             }
         };
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(

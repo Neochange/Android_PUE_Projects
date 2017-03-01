@@ -118,7 +118,9 @@ public class LocationUpdateService extends Service {
             Location tiendaLoc = new Location("");
             tiendaLoc.setLatitude(t.getLatitude());
             tiendaLoc.setLongitude(t.getLongitude());
-            if( lastLocation.distanceTo(tiendaLoc) < 2000){
+            Log.i("checkShopsNear", "Comparing " + lastLocation.getLatitude() + " " + lastLocation.getLongitude() +" with " + tiendaLoc.getLatitude() + " " + tiendaLoc.getLongitude() );
+            Log.i("checkShopsNear", "Distance: " + lastLocation.distanceTo(tiendaLoc));
+            if( lastLocation.distanceTo(tiendaLoc) < 200000){
                 Log.i("checkShopsNear", "You are close to " + t.getNombre());
                 tiendasNearIds.add(t.get_id());
             }

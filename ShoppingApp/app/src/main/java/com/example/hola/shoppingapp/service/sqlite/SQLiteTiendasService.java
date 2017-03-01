@@ -24,6 +24,7 @@ public class SQLiteTiendasService implements TiendasService {
         openHelper = new TiendasSQLiteOpenHelper(context);
 
         List<Tienda> tiendas = getAllTiendas();
+        Log.i("SQLiteTiendasService", "tiendas size: " + tiendas.size());
         if( tiendas.isEmpty()){
             for(int i=0; i< 10; i++){
                 Tienda t = new Tienda();
@@ -162,7 +163,7 @@ public class SQLiteTiendasService implements TiendasService {
         String web= c.getString(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_WEB));
         String tel= c.getString(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_TEL));
         double latitude = c.getDouble(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_LATITUDE));
-        double longitude = c.getDouble(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_LATITUDE));
+        double longitude = c.getDouble(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_LONGITUDE));
 
         Tienda result = new Tienda(id, name, rating, servicio, price, web, tel, latitude, longitude);
         return result;

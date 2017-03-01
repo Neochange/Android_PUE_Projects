@@ -12,7 +12,7 @@ import android.util.Log;
 public class TiendasSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public static final String DB_NAME = "Tiendas_DB";
-    public static final int DB_VERSION = 2;
+    public static final int DB_VERSION = 1;
 
     public static final String TIENDAS_TABLE_NAME="tiendas",
     COLUMN_ID = "_id",
@@ -22,8 +22,8 @@ public class TiendasSQLiteOpenHelper extends SQLiteOpenHelper {
     COLUMN_RATING="rating",
     COLUMN_WEB="web",
     COLUMN_TEL="tel",
-    COLUMN_LATITUDE="longitude",
-    COLUMN_LONGITUDE="latitude";
+    COLUMN_LATITUDE="latitude",
+    COLUMN_LONGITUDE="longitude";
 
 
     // Decide si crea la base de datos, si la version es superior a la existente la actualizará...
@@ -41,7 +41,7 @@ public class TiendasSQLiteOpenHelper extends SQLiteOpenHelper {
                 COLUMN_RATING + " integer,"+
                 COLUMN_SERVICIO + " integer,"+
                 COLUMN_WEB + " text,"+
-                COLUMN_TEL + " text" +
+                COLUMN_TEL + " text," +
                 COLUMN_LATITUDE + " real," + // añadimos los dos campos en el oncreate
                 COLUMN_LONGITUDE + " real " + // por si no hay bd que la cree bien desde el inicio
                 ")"
