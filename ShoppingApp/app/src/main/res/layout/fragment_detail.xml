@@ -20,14 +20,6 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="34dp" /> -->
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_marginBottom="161dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:text="Editar"
         android:layout_width="wrap_content"
@@ -69,16 +61,6 @@
         android:layout_alignStart="@+id/nombre_tienda" />
     -->
 
-    <Button
-        android:text="Web"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/web_button"
-        android:layout_marginBottom="42dp"
-        android:layout_above="@+id/edit_button"
-        android:layout_toRightOf="@+id/edit_button"
-        android:layout_toEndOf="@+id/edit_button" />
-
     <com.example.hola.shoppingapp.views.Valorationbar
         android:id="@+id/servicio_tienda"
         custom:color2="@android:color/holo_blue_bright"
@@ -106,5 +88,44 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_below="@+id/servicio_tienda"
+        android:layout_centerHorizontal="true" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:layout_below="@+id/precio_tienda"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp" />
+
+    <Button
+        android:text="Web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/web_button"
+        android:layout_alignTop="@+id/ratingBar"
+        android:layout_toRightOf="@+id/edit_button"
+        android:layout_toEndOf="@+id/edit_button"
+        android:layout_marginTop="78dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/call_button"
+        android:layout_alignLeft="@+id/web_button"
+        android:layout_alignStart="@+id/web_button"
+        android:layout_marginTop="31dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/location_info"
+        tools:text="Estoy en la tienda" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/location_button"
+        android:layout_below="@+id/location_info"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

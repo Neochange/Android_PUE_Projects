@@ -32,6 +32,8 @@ public class SQLiteTiendasService implements TiendasService {
                 t.setService(7%10);
                 t.setTelefono("1236564654");
                 t.setPrize((i+30)%10);
+                t.setLatitude(42+(0.01F*i));
+                t.setLongitude(3+(0.01F*i));
                 t.setWeb("http://www.google.es");
                 saveTienda(t);
             }
@@ -109,6 +111,8 @@ public class SQLiteTiendasService implements TiendasService {
         values.put(TiendasSQLiteOpenHelper.COLUMN_PRICE, t.getPrize());
         values.put(TiendasSQLiteOpenHelper.COLUMN_TEL, t.getTelefono());
         values.put(TiendasSQLiteOpenHelper.COLUMN_WEB, t.getWeb());
+        values.put(TiendasSQLiteOpenHelper.COLUMN_LATITUDE, t.getLatitude());
+        values.put(TiendasSQLiteOpenHelper.COLUMN_LONGITUDE, t.getLongitude());
 
         // TODO mirar si en la base de datos está nuestra tienda y si la encontramos actualizamos,
         // si no la encontramos creamos una nueva
@@ -157,8 +161,10 @@ public class SQLiteTiendasService implements TiendasService {
         int rating= c.getInt(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_RATING));
         String web= c.getString(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_WEB));
         String tel= c.getString(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_TEL));
+        double latitude = c.getDouble(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_LATITUDE));
+        double longitude = c.getDouble(c.getColumnIndex(TiendasSQLiteOpenHelper.COLUMN_LATITUDE));
 
-        Tienda result = new Tienda(id, name, rating, servicio, price, web, tel);
+        Tienda result = new Tienda(id, name, rating, servicio, price, web, tel, latitude, longitude);
         return result;
     }
 }

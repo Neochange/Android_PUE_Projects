@@ -19,6 +19,8 @@ import com.example.hola.shoppingapp.service.sqlite.SQLiteTiendasService;
 public class TiendasApplication extends Application {
 
     private TiendasService tiendasService;
+
+
     private static TiendasApplication mInstance;
     private PreferencesManager preferencesManager;
     private CloudBackupService backupservice;
@@ -41,6 +43,17 @@ public class TiendasApplication extends Application {
             Intent i = new Intent(this, BackupIntentService.class);
             startService(i);
         }
+
+        // Iniciamos el service que monitoriza la posición GPS
+        Intent i = new Intent(this, LocationUpdateService.class);
+        startService(i);
+    }
+
+    @Override
+    public void onTerminate() {
+        Intent i = new Intent(this, LocationUpdateService.class);
+        stopService(i);
+        super.onTerminate();
     }
 
     public static TiendasApplication getInstance(){

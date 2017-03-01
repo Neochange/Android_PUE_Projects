@@ -14,7 +14,11 @@ public class Tienda {
     private String web;
     private String telefono;
 
-    public Tienda(long _id, String nombre, int rating, int service, int prize, String web, String telefono) {
+    private double latitude;
+    private double longitude;
+
+    public Tienda(long _id, String nombre, int rating, int service, int prize, String web,
+                  String telefono, double latitude, double longitude) {
         this._id = _id;
         this.nombre = nombre;
         this.rating = rating;
@@ -22,10 +26,30 @@ public class Tienda {
         this.prize = prize;
         this.web = web;
         this.telefono = telefono;
+        this.longitude=longitude;
+        this.latitude=latitude;
     }
+
 
     public Tienda() {
 
+
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public long get_id() {
