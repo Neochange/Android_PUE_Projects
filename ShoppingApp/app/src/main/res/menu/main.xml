@@ -10,4 +10,9 @@
         android:title="@string/menu_backup_now_button_text"
         android:orderInCategory="102"
         android:id="@+id/backup_menu_button" />
+
+    <item
+        android:title="@string/show_map_menu_button"
+        android:orderInCategory="103"
+        android:id="@+id/show_map_menu_button" />
 </menu>

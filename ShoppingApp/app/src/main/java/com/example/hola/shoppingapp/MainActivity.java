@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.i("MainActivity", "onOptionsItemSelected");
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -139,6 +140,10 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(this, MenuFrecuencia.class);
             startActivity(i);
 
+        }
+        else if(id == R.id.show_map_menu_button){
+            Intent i = new Intent(this, MapsActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

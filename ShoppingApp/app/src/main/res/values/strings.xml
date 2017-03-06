@@ -27,5 +27,7 @@
     <string name="backup_now">Do backup</string>
     <string name="BorrarTienda">Borrar tienda</string>
     <string name="set_here_as_location">Set Here as location</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="show_map_menu_button">Show Map</string>
 
 </resources>
