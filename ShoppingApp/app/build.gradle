@@ -13,7 +13,13 @@ android {
     }
     buildTypes {
         release {
+            minifyEnabled true
+            buildConfigField "String" , "SERVER_URL", '"http://release.myapp.com"'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
             minifyEnabled false
+            buildConfigField "String" , "SERVER_URL", '"http://dev.myapp.com"'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

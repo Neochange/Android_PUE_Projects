@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity
     Animation remarkButtonAnimation;
     FloatingActionButton fab;
 
+    // Tendriamos una url diferente en función de ser la app de release o de debug
+    String URL = BuildConfig.SERVER_URL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
