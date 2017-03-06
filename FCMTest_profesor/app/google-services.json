@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "980835992655",
+    "firebase_url": "https://fcm-test-8dd03.firebaseio.com",
+    "project_id": "fcm-test-8dd03",
+    "storage_bucket": "fcm-test-8dd03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980835992655:android:9bf8f6ac54d90eae",
+        "android_client_info": {
+          "package_name": "com.sergigabol.fcmtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980835992655-p7ts1o360gnl8tn3s6u4h0ths7vu3bdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzM34IPpw3c1j8KNUFR9mA41vD0fqZjV0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980835992655:android:a303458131df7218",
+        "android_client_info": {
+          "package_name": "es.pue.sergi.fcmtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980835992655-p7ts1o360gnl8tn3s6u4h0ths7vu3bdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzM34IPpw3c1j8KNUFR9mA41vD0fqZjV0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
