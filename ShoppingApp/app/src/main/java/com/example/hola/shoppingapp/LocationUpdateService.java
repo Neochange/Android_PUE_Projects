@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
@@ -27,11 +28,20 @@ public class LocationUpdateService extends Service {
 
     Location lastLocation;
     DecomprasLocationListener listener;
+    private boolean updatesStarted = false;
+
     public static final int NOTIFICATION_ID = 1100011;
     public static final String SHOP_NEAR_BROADCAST = "shopping.radius";
 
     public LocationUpdateService() {
         listener = new DecomprasLocationListener();
+    }
+
+    // Implementación de Ibinder de este servicio
+    public class LocationServiceBinder extends Binder{
+        public Location getBestCurrentLocation(){
+            return lastLocation;
+        }
     }
 
     @Override
@@ -43,21 +53,33 @@ public class LocationUpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        startLocationUpdates();
+        // Como este service puede ser iniciado o estar como Bound nos aseguramos que otro
+        // no ha iniciado los updates de posición GPS
+        if(!updatesStarted) {
+            startLocationUpdates();
+            updatesStarted = true;
+        }
         // Con estas constantes le decimos al sistema que tiene que hacer con este service
         // si ha tenido que cerrarlo por recursos, pero ahora vuelve a tener esos recursos.
         return Service.START_STICKY;
     }
 
+
+
+    // Esta función detecta cada vez que un cliente se desconecta de este Service
     @Override
     public boolean onUnbind(Intent intent) {
         return super.onUnbind(intent);
     }
 
+    // Definimos que hacer cuando un cliente se me conecta
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        if(!updatesStarted) {
+            startLocationUpdates();
+            updatesStarted = true;
+        }
+        return new LocationServiceBinder();
     }
 
     // A partir de la versión 6 hay que programar la callback
