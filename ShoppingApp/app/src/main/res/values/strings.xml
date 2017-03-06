@@ -26,5 +26,6 @@
     <string name="sd_backuo_option">SD</string>
     <string name="backup_now">Do backup</string>
     <string name="BorrarTienda">Borrar tienda</string>
+    <string name="set_here_as_location">Set Here as location</string>
 
 </resources>

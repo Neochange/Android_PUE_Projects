@@ -78,10 +78,15 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                Log.i("BroadcastReceiver", "BroadcastReceiver was called");
                 long tiendas_ids[] = intent.getExtras().getLongArray("Shops_near_extra");
                 for(long id:tiendas_ids){
                     if( id == tienda_id) {
                         location_textview.setText("You are near this shop");
+                        break;
+                    }
+                    else{
+                        location_textview.setText("You are NOT near this shop");
                         break;
                     }
                 }
@@ -113,7 +118,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener {
         TextView nombre = (TextView) view.findViewById(R.id.nombre_tienda);
         nombre.setText(t.getNombre());
 
-        location_textview = (TextView) view.findViewById(R.id.location_button);
+        location_textview = (TextView) view.findViewById(R.id.location_info);
 
         // Cambiamos precio y servicio para que pasen a ser nuestra barra custom (ValorationBar)
         precio = (Valorationbar) view.findViewById(R.id.precio_tienda);

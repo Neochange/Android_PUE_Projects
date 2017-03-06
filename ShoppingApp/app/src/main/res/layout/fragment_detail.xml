@@ -121,7 +121,7 @@
         tools:text="Estoy en la tienda" />
 
     <Button
-        android:text="Button"
+        android:text="@string/set_here_as_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
